@@ -21,7 +21,7 @@
 
 ## USAGE:
 
-* `git clone git://github.com/0x008800/Program-that-translates-from-English-to-Pig-Latin` ~/go/src/Program-that-translates-from-English-to-Pig-Latin
+* `git clone git://github.com/0x008800/Program-that-translates-from-English-to-Pig-Latin ~/go/src/Program-that-translates-from-English-to-Pig-Latin`
 * `cd ~/go/src/Program-that-translates-from-English-to-Pig-Latin`
 * `go build`
 * `./english_to_pig_latin path_to_your_filename`
