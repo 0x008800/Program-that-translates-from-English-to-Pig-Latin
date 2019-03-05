@@ -12,12 +12,12 @@
 
 ## EXAMPLES:  
 
-* They lived happily in the forest afterwards. => Eythay ivedlay appilyhay inay ethay orestfay afterwardsay.
-* word => ordway
-* expression => expressionay
-* Word => Ordway
-* Expression => Expressionay
-* :word, => :ordway,
+* `They lived happily in the forest afterwards.` => `Eythay ivedlay appilyhay inay ethay orestfay afterwardsay.`
+* `word` => `ordway`
+* `expression` => `expressionay`
+* `Word` => `Ordway`
+* `Expression` => `Expressionay`
+* `:word,` => `:ordway,`
 
 ## USAGE:
 
