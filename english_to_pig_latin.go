@@ -50,7 +50,7 @@ func eng_to_pigLatin() error {
 	//и записываем в новый файл
 	for scanner.Scan() {
 		original_string := scanner.Text()
-		pig_string := Make_pig_string(original_string)
+		pig_string := Make_pig_string(&original_string)
 		_, err := writer.WriteString(pig_string)
 		if err != nil {
 			fmt.Println("err writing")
@@ -67,15 +67,15 @@ func eng_to_pigLatin() error {
 
 //принимает обычную строку слов
 //возвращает уже преобразованную в pig-latin
-func Make_pig_string(str string) string {
+func Make_pig_string(str *string) string {
 	var pig_string bytes.Buffer
 
 	//разбиваем на слова
-	words := strings.Split(str, " ")
+	words := strings.Split(*str, " ")
 	for _, word := range words {
 		//каждое слово модифицируем
 		//и собираем новую строку
-		pig_string.WriteString(EnglishWordToPigLatinWord(word))
+		pig_string.WriteString(EnglishWordToPigLatinWord(&word))
 		pig_string.WriteString(" ")
 	}
 	return fmt.Sprintf("%s\n", strings.TrimSpace(pig_string.String()))
@@ -83,7 +83,7 @@ func Make_pig_string(str string) string {
 
 //Преобразует слово из английского в поросячью латынь
 //*получает слова вместе с точками, запятыми итд
-func EnglishWordToPigLatinWord(word string) string {
+func EnglishWordToPigLatinWord(word *string) string {
 
 	//сюда помещаем знаки припинания, которые оказались перед словом
 	prefix := ""
@@ -100,21 +100,21 @@ func EnglishWordToPigLatinWord(word string) string {
 	if err != nil {
 		log.Fatal(err)
 	}
-	pure_word := reg.FindString(word) //извлекли
+	pure_word := reg.FindString(*word) //извлекли
 
 	//если мы вдруг получили отдельностоящие знаки припинания
 	// возвращаем их в том же виде
 	if len(pure_word) == 0 {
-		return word
+		return *word
 	}
 
 	//если длина "чистого" слова равна длине полученного
 	// значит нам не нужен этот блок
 	//и мы пропускаем обработку знаков пунктуации
-	if len(word) != len(pure_word) {
+	if len(*word) != len(pure_word) {
 		//но если мы здесь
 		//извлекаем то что перед и после слова
-		tmp := strings.Split(word, pure_word)
+		tmp := strings.Split(*word, pure_word)
 
 		// если извлечённых двое
 		if len(tmp) == 2 {
@@ -124,7 +124,7 @@ func EnglishWordToPigLatinWord(word string) string {
 		} else if len(tmp) == 1 { // если же одно
 			//нужно выяснить, что это именно
 
-			if strings.HasPrefix(pure_word, word) {
+			if strings.HasPrefix(pure_word, *word) {
 
 				//"чистое слово" совпадает с началом переданного
 				//значит записываем в "после"

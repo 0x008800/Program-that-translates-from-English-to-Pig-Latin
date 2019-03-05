@@ -30,39 +30,49 @@ func TestIs_char_vowel(t *testing.T) {
 
 func TestEnglishWordToPigLatinWord(t *testing.T) {
 
-	word := EnglishWordToPigLatinWord("away")
+	text := "away"
+	word := EnglishWordToPigLatinWord(&text)
 	if word != "awayay" {
 		t.Errorf("small vowel error, must: 'awayay', is: '%s\n'", word)
 	}
 
-	word = EnglishWordToPigLatinWord("Away")
+	text = "Away"
+	word = EnglishWordToPigLatinWord(&text)
 	if word != "Awayay" {
 		t.Errorf("title vowel error, must: 'Awayay', is: '%s\n'", word)
 	}
 
-	word = EnglishWordToPigLatinWord("way")
+	text = "way"
+	word = EnglishWordToPigLatinWord(&text)
 	if word != "ayway" {
 		t.Errorf("small consonant error, must: 'ayway', is: '%s\n'", word)
 	}
 
-	word = EnglishWordToPigLatinWord(" Way!!!")
+	text = " Way!!!"
+	word = EnglishWordToPigLatinWord(&text)
 	if word != " Ayway!!!" {
 		t.Errorf("big consonant error, must: ' Ayway!!!', is: '%s\n'", word)
 	}
 
-	word = EnglishWordToPigLatinWord("-Way..")
+	text = "-Way.."
+	word = EnglishWordToPigLatinWord(&text)
 	if word != "-Ayway.." {
 		t.Errorf("big consonant error, must: '-Ayway..', is: '%s\n'", word)
 	}
-	word = EnglishWordToPigLatinWord("- way:")
+	text = "- way:"
+	word = EnglishWordToPigLatinWord(&text)
 	if word != "- ayway:" {
 		t.Errorf("big consonant error, must: '- ayway:', is: '%s\n'", word)
 	}
-	word = EnglishWordToPigLatinWord("+way;")
+
+	text = "+way;"
+	word = EnglishWordToPigLatinWord(&text)
 	if word != "+ayway;" {
 		t.Errorf("big consonant error, must: '+ayway;', is: '%s\n'", word)
 	}
-	word = EnglishWordToPigLatinWord("WayWay")
+
+	text = "WayWay"
+	word = EnglishWordToPigLatinWord(&text)
 	if word != "AyWayway" {
 		t.Errorf("big consonant error, must: 'Aywayway', is: '%s\n'", word)
 	}
