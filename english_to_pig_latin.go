@@ -3,6 +3,7 @@ package main
 
 import (
 	"bufio"
+	"bytes"
 	"fmt"
 	"log"
 	"os"
@@ -67,16 +68,17 @@ func eng_to_pigLatin() error {
 //принимает обычную строку слов
 //возвращает уже преобразованную в pig-latin
 func Make_pig_string(str string) string {
+	var pig_string bytes.Buffer
 
-	pig_string := ""
 	//разбиваем на слова
 	words := strings.Split(str, " ")
 	for _, word := range words {
 		//каждое слово модифицируем
 		//и собираем новую строку
-		pig_string += EnglishWordToPigLatinWord(word) + " "
+		pig_string.WriteString(EnglishWordToPigLatinWord(word))
+		pig_string.WriteString(" ")
 	}
-	return pig_string + "\n"
+	return fmt.Sprintf("%s\n", strings.TrimSpace(pig_string.String()))
 }
 
 //Преобразует слово из английского в поросячью латынь
@@ -202,9 +204,9 @@ func Is_char_vowel(ch rune) bool {
 func Add_pig_latin_to_filename(s string) string {
 
 	str := strings.Split(s, ".")
-	tmp := strings.Join(str[0:len(str)-1], ".") //
-	tmp += "(pig-latin)." + str[len(str)-1]
-	return tmp
+	new_file_name := strings.Join(str[0:len(str)-1], ".") //
+	new_file_name += "(pig-latin)." + str[len(str)-1]
+	return new_file_name
 }
 
 //for debug
