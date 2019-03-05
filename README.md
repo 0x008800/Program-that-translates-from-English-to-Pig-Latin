@@ -22,6 +22,7 @@ Expression => Expressionay
 USAGE:
 
 git clone git://github.com/0x008800/Program-that-translates-from-English-to-Pig-Latin ~/go/src/Program-that-translates-from-English-to-Pig-Latin
+
 cd ~/go/src/Program-that-translates-from-English-to-Pig-Latin
 
 go build
