@@ -20,7 +20,7 @@ func eng_to_pigLatin() error {
 
 	if len(os.Args) != 2 {
 		fmt.Println("Usage: './english_to_pig_latin path_to_your_filename'")
-		fmt.Printf("you take %d arguments\n", len(os.Args))
+		fmt.Printf("you took %d arguments\n", len(os.Args))
 		os.Exit(1)
 	}
 	//открываем файл переданный в аргументе
@@ -201,24 +201,31 @@ func Is_char_vowel(ch rune) bool {
 // учитывая что в имени файла могут быть несколько точек
 func Add_pig_latin_to_filename(s string) string {
 
-	tmp := ""
 	str := strings.Split(s, ".")
-	for i, _ := range str {
-		if (len(str) - 2) != i {
-			tmp += "(pig-latin)." + str[i]
-		} else {
-			tmp += str[i]
-		}
-	}
+	tmp := strings.Join(str[0:len(str)-1], ".")
+	tmp += "(pig-latin)." + str[len(str)-1]
 	return tmp
+}
+
+//for debug
+func check() {
+	if len(Vowels) != 12 {
+		log.Fatal("wrong count of vowels")
+	}
+
+	if len(Big) != 26 {
+		log.Fatal("wrong count of Big")
+	}
+
 }
 
 func main() {
 
+	//check()
+
 	err := eng_to_pigLatin()
 	if err != nil {
-		fmt.Println("\tSomething went wrong!!!")
-		os.Exit(1)
+		log.Fatal("\tSomething went wrong!!!")
 	}
 	fmt.Println("\tSUCCESS!!!\n\tfile had been translated to pig-latin!!!")
 }
