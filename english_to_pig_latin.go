@@ -202,7 +202,7 @@ func Is_char_vowel(ch rune) bool {
 func Add_pig_latin_to_filename(s string) string {
 
 	str := strings.Split(s, ".")
-	tmp := strings.Join(str[0:len(str)-1], ".")
+	tmp := strings.Join(str[0:len(str)-1], ".") //
 	tmp += "(pig-latin)." + str[len(str)-1]
 	return tmp
 }
