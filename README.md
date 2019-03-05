@@ -31,6 +31,7 @@ or just run: `go run english_to_pig_latin.go path_to_your_filename`
 After running it will produce the file named: "filename(pig-latin)"
 
 also you can...
-##RUN TEST: 
+
+## RUN TEST: 
 
 * `go test`
