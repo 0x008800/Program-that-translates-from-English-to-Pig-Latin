@@ -186,7 +186,7 @@ func Is_word_started_with_wovel(word string) bool {
 	return false
 }
 
-//предикат "первая буква переданного слова гласная?"
+//предикат "переданная буква гласная?"
 func Is_char_vowel(ch rune) bool {
 
 	for _, vowel := range Vowels {
